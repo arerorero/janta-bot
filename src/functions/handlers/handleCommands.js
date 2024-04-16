@@ -1,12 +1,12 @@
-import { readdirSync } from "fs";
+const fs = require("fs");
 
-export default (client) => {
+module.exports = (client) => {
   client.handleCommands = async () => {
-    const commandFolders = readdirSync("./src/commands");
+    const commandFolders = fs.readdirSync("./src/commands");
     for (const folder of commandFolders) {
-      const commandFiles = readdirSync(`./src/commands/${folder}`).filter(
-        (file) => file.endsWith(".js")
-      );
+      const commandFiles = fs
+        .readdirSync(`./src/commands/${folder}`)
+        .filter((file) => file.endsWith(".js"));
 
       const { commands, commandArray } = client;
       for (const file of commandFiles) {
